@@ -186,12 +186,12 @@ document.getElementById('btnDelete').addEventListener('click', () => {
     });
 });
 
-//Acá hacemos lo mismo que con el botón de modificar para que se habilite cuando ingresamos un id
-document.getElementById('inputDelete').addEventListener('input', habilitarBotonModificar);
-function habilitarBotonModificar() {
+//Acá hacemos lo mismo que con el botón de modificar para que se habilite cuando ingresamos una
+document.getElementById('inputDelete').addEventListener('input', habilitarBotonBorrar);
+
+function habilitarBotonBorrar() {
     const id = document.getElementById('inputDelete').value;
-    const btnModificar = document.getElementById('btnDelete');
-    btnModificar.disabled = id === '';
+    const btnBorrar = document.getElementById('btnDelete');
+    btnBorrar.disabled = id === '';
 }
-habilitarBotonModificar();
 
