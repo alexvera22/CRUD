@@ -164,3 +164,34 @@ document.getElementById('btnSendChanges').addEventListener('click', () => {
         mostrarError('Ocurrió un error al guardar los cambios.');
     });
 });
+
+//lo mismo para el botón "Borrar"
+document.getElementById('btnDelete').addEventListener('click', () => {
+    
+    const id = document.getElementById('inputDelete').value;
+    // Realiza la solicitud DELETE para eliminar el registro
+    fetch(`https://65482f3add8ebcd4ab229fd7.mockapi.io/users/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.status === 200) {
+            // Actualiza la lista de registros después de eliminar
+            listarRegistros();
+        } else {
+            mostrarError('Ocurrió un error al eliminar el registro.');
+        }
+    })
+    .catch(error => {
+        mostrarError('Ocurrió un error al eliminar el registro.');
+    });
+});
+
+//Acá hacemos lo mismo que con el botón de modificar para que se habilite cuando ingresamos un id
+document.getElementById('inputDelete').addEventListener('input', habilitarBotonModificar);
+function habilitarBotonModificar() {
+    const id = document.getElementById('inputDelete').value;
+    const btnModificar = document.getElementById('btnDelete');
+    btnModificar.disabled = id === '';
+}
+habilitarBotonModificar();
+
